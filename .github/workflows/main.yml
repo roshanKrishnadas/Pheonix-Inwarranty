@@ -46,6 +46,26 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: newman/
+
+      - name: Send email notification
+        if: always()
+        uses: dawidd6/action-send-mail@v16
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{secrets.EMAIL_PASSWORD }}
+          subject: Pheonix Inwarranty flow Execution Notification
+          to: roshan.shresthama@gmail.com
+          from: ${{ secrets.EMAIL_USERNAME }}
+          body: |
+              Hi,
+              Phoenix Inwarranty flows has been excuted and report has been publish and the url is 
+              https://roshankrishnadas.github.io/Pheonix-Inwarranty/
+          
+          
+          
+          
           
           
         
